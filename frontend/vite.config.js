@@ -8,7 +8,7 @@ export default defineConfig({
     port: 3000,
     proxy: {
       '/api': {
-        target: 'https://matiks-backend.onrender.com',
+        target: 'https://matiks-hackfest.onrender.com',
         changeOrigin: true,
       },
     },
