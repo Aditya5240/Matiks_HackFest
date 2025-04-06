@@ -10,21 +10,26 @@ const LeaderboardScreen = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   
-  useEffect(() => {
-    const fetchLeaderboard = async () => {
-      try {
-        setLoading(true);
-        const { data } = await axios.get(`/api/users/leaderboard`);
-        setLeaderboard(data);
-        setLoading(false);
-      } catch (err) {
-        setError(err.response?.data?.message || err.message);
-        setLoading(false);
-      }
-    };
-    
-    fetchLeaderboard();
-  }, []);
+useEffect(() => {
+  socket.on("leaderboardData", (data) => {
+    console.log("Received leaderboard data:", data);
+
+    // Fix: check if data.leaderboard exists
+    if (Array.isArray(data)) {
+      setLeaderboard(data);
+    } else if (Array.isArray(data.leaderboard)) {
+      setLeaderboard(data.leaderboard);
+    } else {
+      console.warn("Unexpected leaderboard data format", data);
+      setLeaderboard([]); // fallback
+    }
+  });
+
+  return () => {
+    socket.off("leaderboardData");
+  };
+}, []);
+
   
   // Custom styles from provided code
   const containerStyle = {
