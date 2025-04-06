@@ -133,4 +133,5 @@ If you like the project, give it a ⭐ on [GitHub](https://github.com/your-usern
 ## 🤛🏼 Maintainer
 
 **Adarsh Kumar Singh**  
+**Aditya Jain**
 Feel free to reach out with feedback or suggestions!
