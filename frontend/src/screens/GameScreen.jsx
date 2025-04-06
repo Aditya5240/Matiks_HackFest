@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import io from "socket.io-client";
 
-const socket = io("https://matiks-backend.onrender.com"); // Change if needed
+const socket = io("https://matiks-hackfest.onrender.com"); // Change if needed
 
 const GameScreen = () => {
     const navigate = useNavigate();
