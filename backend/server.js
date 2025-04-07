@@ -47,9 +47,20 @@ const io = new Server(server, {
     methods: ["GET", "POST"],
   },
 });
+const allowedOrigins = [
+  'http://localhost:3000',
+  'https://harmonious-platypus-58bfea.netlify.app',
+];
+
 app.use(
   cors({
-    origin: "https://matiks-hackfest-frontend.onrender.com",
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error('Not allowed by CORS'));
+      }
+    },
     credentials: true,
   })
 );
